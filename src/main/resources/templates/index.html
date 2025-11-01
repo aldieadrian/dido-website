@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout :: head-fragment (pageTitle='Home')}">
+    <meta charset="UTF-8">
+    <title>Loading...</title>
+</head>
+
+<body>
+
+<header th:replace="~{layout :: header-fragment}"></header>
+
+<nav th:replace="~{layout :: navbar-fragment}"></nav>
+
+<main>
+    <h2>Welcome to the Homepage!</h2>
+    <p>This content is from <b>index.html</b>, and the head, header, and footer are from <b>layout.html</b>.</p>
+    <p>This is how we'll build all the other pages!</p>
+</main>
+
+<footer th:replace="~{layout :: footer-fragment}"></footer>
+
+</body>
+</html>

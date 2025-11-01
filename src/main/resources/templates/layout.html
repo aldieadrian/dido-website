@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head-fragment (pageTitle)">
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle} + ' - DIDO Creative Studio'">Default Title</title>
+
+    <style>
+        body { font-family: sans-serif; margin: 0; }
+        header { background-color: #333; color: white; padding: 20px; }
+        header h1 { margin: 0; }
+        nav { background-color: #f4f4f4; padding: 10px; border-bottom: 1px solid #ccc; }
+        nav a { margin-right: 15px; text-decoration: none; color: #555; }
+        main { min-height: 400px; padding: 20px; }
+        footer { background-color: #333; color: white; text-align: center; padding: 10px; margin-top: 20px; }
+    </style>
+</head>
+
+<body>
+<header th:fragment="header-fragment">
+    <h1>DIDO Creative Studio</h1>
+</header>
+
+<nav th:fragment="navbar-fragment">
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/services}">Services</a>
+    <a th:href="@{/portfolio}">Portfolio</a>
+    <a th:href="@{/cases}">Cases</a>
+    <a th:href="@{/about}">About Us</a>
+    <a th:href="@{/contact}">Contact</a>
+</nav>
+
+<footer th:fragment="footer-fragment">
+    <p>&copy; 2025 DIDO Creative Studio. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
