@@ -1,6 +1,8 @@
 package com.didocreative.dido_website.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 
@@ -21,9 +23,11 @@ public class ImageSection {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String imageSectionDescription;
 
+    @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private Date createdTime;
 
+    @UpdateTimestamp
     @Column(nullable = false)
     private Date modifiedTime;
 

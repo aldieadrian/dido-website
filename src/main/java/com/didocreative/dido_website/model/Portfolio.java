@@ -1,6 +1,8 @@
 package com.didocreative.dido_website.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 
@@ -15,29 +17,27 @@ public class Portfolio {
     @Column(nullable = false, length = 512)
     private String portfolioTitle;
 
+    @Column(nullable = false)
+    private Long projectTypeId;
+
+    @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private Date createdTime;
 
+    @UpdateTimestamp
     @Column(nullable = false)
     private Date modifiedTime;
-
-    // --- "Many-to-One" link to ProjectType ---
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "project_type_id", nullable = false)
-    private ProjectType projectType;
 
     // Constructor
     public Portfolio() {
     }
 
-    public Portfolio(Long portfolioId, String portfolioTitle,
-                     Date createdTime, Date modifiedTime,
-                     ProjectType projectType) {
+    public Portfolio(Long portfolioId, String portfolioTitle, Long projectTypeId, Date createdTime, Date modifiedTime) {
         this.portfolioId = portfolioId;
         this.portfolioTitle = portfolioTitle;
+        this.projectTypeId = projectTypeId;
         this.createdTime = createdTime;
         this.modifiedTime = modifiedTime;
-        this.projectType = projectType;
     }
 
     // Getter Setter
@@ -57,6 +57,14 @@ public class Portfolio {
         this.portfolioTitle = portfolioTitle;
     }
 
+    public Long getProjectTypeId() {
+        return projectTypeId;
+    }
+
+    public void setProjectTypeId(Long projectTypeId) {
+        this.projectTypeId = projectTypeId;
+    }
+
     public Date getCreatedTime() {
         return createdTime;
     }
@@ -73,21 +81,13 @@ public class Portfolio {
         this.modifiedTime = modifiedTime;
     }
 
-    public ProjectType getProjectType() {
-        return projectType;
-    }
-
-    public void setProjectType(ProjectType projectType) {
-        this.projectType = projectType;
-    }
-
     // toString method
     @Override
     public String toString() {
         return "Portfolio{" +
                 "portfolioId=" + portfolioId +
                 ", portfolioTitle='" + portfolioTitle + '\'' +
-                ", projectType='" + projectType + '\'' +
+                ", projectTypeId='" + projectTypeId + '\'' +
                 '}';
     }
 }
