@@ -14,9 +14,12 @@ public interface PortfolioRepository extends JpaRepository<Portfolio, Long> {
     // - findById(Long portfolioId)
     // - findAll()
     // - deleteById(Long portfolioId)
-    // - ...and many more, all for free!
+    // - ...and many more
 
     // Get Portfolios by projectTypeId
-    List<Portfolio> findByProjectId(Long projectTypeId);
+    List<Portfolio> findByProjectTypeId(Long projectTypeId);
+
+    // Get Portfolios by portfolioTitle
+    List<Portfolio> findByPortfolioTitle(String portfolioTitle);
 
 }
