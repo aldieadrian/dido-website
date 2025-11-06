@@ -7,12 +7,16 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "image_section")
-public class ImageSection {
+@Table(name = "portfolio_image_section")
+public class PortfolioImageSection {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long imageSectionId;
+    private Long portfolioImageSectionId;
+
+    // --- NEW FIELD ---
+    @Column(nullable = false) // Foreign key to Portfolio
+    private Long portfolioId;
 
     @Column(nullable = false, length = 256)
     private String imageSectionKey;
@@ -32,7 +36,7 @@ public class ImageSection {
     private Date modifiedTime;
 
     // Constructor
-    public ImageSection() {
+    public PortfolioImageSection() {
     }
 
     public Long getImageSectionId() {
@@ -41,6 +45,14 @@ public class ImageSection {
 
     public void setImageSectionId(Long imageSectionId) {
         this.imageSectionId = imageSectionId;
+    }
+
+    public Long getPortfolioId() {
+        return portfolioId;
+    }
+
+    public void setPortfolioId(Long portfolioId) {
+        this.portfolioId = portfolioId;
     }
 
     public String getImageSectionKey() {
@@ -86,8 +98,8 @@ public class ImageSection {
     // toString method
     @Override
     public String toString() {
-        return "ImageSection{" +
-                "imageSectionId=" + imageSectionId +
+        return "PortfolioImageSection{" +
+                "portfolioImageSectionId=" + portfolioImageSectionId +
                 ", imageSectionKey='" + imageSectionKey + '\'' +
                 ", imageSectionValue='" + imageSectionValue + '\'' +
                 '}';

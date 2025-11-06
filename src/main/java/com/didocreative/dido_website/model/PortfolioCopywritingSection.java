@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "copywriting_section")
-public class CopywritingSection {
+public class PortfolioCopywritingSection {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,12 +32,12 @@ public class CopywritingSection {
     private Date modifiedTime;
 
     // Constructor
-    public CopywritingSection() {
+    public PortfolioCopywritingSection() {
     }
 
-    public CopywritingSection(Long copywritingSectionId, String copywritingSectionKey,
-                              String copywritingSectionValue, String copywritingSectionDescription,
-                              Date createdTime, Date modifiedTime) {
+    public PortfolioCopywritingSection(Long copywritingSectionId, String copywritingSectionKey,
+                                       String copywritingSectionValue, String copywritingSectionDescription,
+                                       Date createdTime, Date modifiedTime) {
         this.copywritingSectionId = copywritingSectionId;
         this.copywritingSectionKey = copywritingSectionKey;
         this.copywritingSectionValue = copywritingSectionValue;

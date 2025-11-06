@@ -20,6 +20,10 @@ public class Portfolio {
     @Column(nullable = false)
     private Long projectTypeId;
 
+    // --- NEW FIELD ---
+    @Column(length = 1024) // URL for the cover image
+    private String coverImageUrl;
+
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private Date createdTime;
@@ -63,6 +67,14 @@ public class Portfolio {
 
     public void setProjectTypeId(Long projectTypeId) {
         this.projectTypeId = projectTypeId;
+    }
+
+    public String getCoverImageUrl() {
+        return coverImageUrl;
+    }
+
+    public void setCoverImageUrl(String coverImageUrl) {
+        this.coverImageUrl = coverImageUrl;
     }
 
     public Date getCreatedTime() {
