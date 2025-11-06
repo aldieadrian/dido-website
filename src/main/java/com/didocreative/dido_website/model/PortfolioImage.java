@@ -7,18 +7,15 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "image")
-public class Image {
+@Table(name = "portfolio_image")
+public class PortfolioImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long imageId;
+    private Long portfolioImageId;
 
-    @Column(nullable = false)
-    private Long pageId;
-
-    @Column(nullable = false)
-    private Long imageSectionId;
+    @Column(nullable = false) // Foreign key to PortfolioImageSection
+    private Long portfolioImageSectionId;
 
     @Column(nullable = false, length = 1024)
     private String imageUrl;
@@ -32,42 +29,32 @@ public class Image {
     private Date modifiedTime;
 
     // Constructor
-    public Image() {
+    public PortfolioImage() {
     }
 
-    public Image(Long imageId, Long pageId, Long imageSectionId,
-                 String imageUrl,Date createdTime, Date modifiedTime) {
-        this.imageId = imageId;
-        this.pageId = pageId;
-        this.imageSectionId = imageSectionId;
+    public PortfolioImage(Long portfolioImageId, Long portfolioImageSectionId,
+                          String imageUrl, Date createdTime, Date modifiedTime) {
+        this.portfolioImageId = portfolioImageId;
+        this.portfolioImageSectionId = portfolioImageSectionId;
         this.imageUrl = imageUrl;
         this.createdTime = createdTime;
         this.modifiedTime = modifiedTime;
     }
 
-    // Getter Setter
-    public Long getImageId() {
-        return imageId;
+    public Long getPortfolioImageId() {
+        return portfolioImageId;
     }
 
-    public void setImageId(Long imageId) {
-        this.imageId = imageId;
+    public void setPortfolioImageId(Long portfolioImageId) {
+        this.portfolioImageId = portfolioImageId;
     }
 
-    public Long getPageId() {
-        return pageId;
+    public Long getPortfolioImageSectionId() {
+        return portfolioImageSectionId;
     }
 
-    public void setPageId(Long pageId) {
-        this.pageId = pageId;
-    }
-
-    public Long getImageSectionId() {
-        return imageSectionId;
-    }
-
-    public void setImageSectionId(Long imageSectionId) {
-        this.imageSectionId = imageSectionId;
+    public void setPortfolioImageSectionId(Long portfolioImageSectionId) {
+        this.portfolioImageSectionId = portfolioImageSectionId;
     }
 
     public String getImageUrl() {
@@ -97,10 +84,9 @@ public class Image {
     // toString method
     @Override
     public String toString() {
-        return "Image{" +
-                "imageId=" + imageId +
-                ", pageId='" + pageId + '\'' +
-                ", imageSectionId='" + imageSectionId + '\'' +
+        return "PortfolioImage{" +
+                "portfolioImageId=" + portfolioImageId +
+                ", portfolioImageSectionId=" + portfolioImageSectionId +
                 ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }

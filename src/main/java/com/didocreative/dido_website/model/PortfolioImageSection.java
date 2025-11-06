@@ -14,18 +14,17 @@ public class PortfolioImageSection {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long portfolioImageSectionId;
 
-    // --- NEW FIELD ---
     @Column(nullable = false) // Foreign key to Portfolio
     private Long portfolioId;
 
     @Column(nullable = false, length = 256)
-    private String imageSectionKey;
+    private String key;
 
     @Column(nullable = false, length = 512)
-    private String imageSectionValue;
+    private String value;
 
     @Column(nullable = false, columnDefinition = "TEXT")
-    private String imageSectionDescription;
+    private String description;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
@@ -39,12 +38,24 @@ public class PortfolioImageSection {
     public PortfolioImageSection() {
     }
 
-    public Long getImageSectionId() {
-        return imageSectionId;
+    public PortfolioImageSection(Long portfolioImageSectionId, Long portfolioId,
+                                 String key, String value, String description,
+                                 Date createdTime, Date modifiedTime) {
+        this.portfolioImageSectionId = portfolioImageSectionId;
+        this.portfolioId = portfolioId;
+        this.key = key;
+        this.value = value;
+        this.description = description;
+        this.createdTime = createdTime;
+        this.modifiedTime = modifiedTime;
     }
 
-    public void setImageSectionId(Long imageSectionId) {
-        this.imageSectionId = imageSectionId;
+    public Long getPortfolioImageSectionId() {
+        return portfolioImageSectionId;
+    }
+
+    public void setPortfolioImageSectionId(Long portfolioImageSectionId) {
+        this.portfolioImageSectionId = portfolioImageSectionId;
     }
 
     public Long getPortfolioId() {
@@ -55,28 +66,28 @@ public class PortfolioImageSection {
         this.portfolioId = portfolioId;
     }
 
-    public String getImageSectionKey() {
-        return imageSectionKey;
+    public String getKey() {
+        return key;
     }
 
-    public void setImageSectionKey(String imageSectionKey) {
-        this.imageSectionKey = imageSectionKey;
+    public void setKey(String key) {
+        this.key = key;
     }
 
-    public String getImageSectionValue() {
-        return imageSectionValue;
+    public String getValue() {
+        return value;
     }
 
-    public void setImageSectionValue(String imageSectionValue) {
-        this.imageSectionValue = imageSectionValue;
+    public void setValue(String value) {
+        this.value = value;
     }
 
-    public String getImageSectionDescription() {
-        return imageSectionDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setImageSectionDescription(String imageSectionDescription) {
-        this.imageSectionDescription = imageSectionDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getCreatedTime() {
@@ -100,8 +111,10 @@ public class PortfolioImageSection {
     public String toString() {
         return "PortfolioImageSection{" +
                 "portfolioImageSectionId=" + portfolioImageSectionId +
-                ", imageSectionKey='" + imageSectionKey + '\'' +
-                ", imageSectionValue='" + imageSectionValue + '\'' +
+                ", portfolioId=" + portfolioId +
+                ", key='" + key + '\'' +
+                ", value='" + value + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

@@ -16,12 +16,12 @@ public interface ProjectTypeRepository extends JpaRepository<ProjectType, Long> 
     // - deleteById(Long projectTypeId)
     // - ...and many more
 
-    // Get ProjectTypes by projectTypeKey
-    List<ProjectType> findByProjectTypeKey(String projectTypeKey);
+    // Get ProjectTypes by key
+    List<ProjectType> findByKey(String key);
 
-    // Get ProjectTypes by projectTypeValue
-    List<ProjectType> findByProjectTypeValue(String projectTypeValue);
+    // Get ProjectTypes by value
+    List<ProjectType> findByValue(String value);
 
-    // Get ProjectTypes by projectTypeDescription
-    List<ProjectType> findByProjectTypeDescription(String projectTypeDescription);
+    // Get ProjectTypes by description
+    List<ProjectType> findByDescription(String description);
 }

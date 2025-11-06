@@ -15,13 +15,13 @@ public class ProjectType {
     private Long projectTypeId;
 
     @Column(nullable = false, length = 256)
-    private String projectTypeKey;
+    private String key;
 
     @Column(nullable = false, length = 512)
-    private String projectTypeValue;
+    private String value;
 
     @Column(nullable = false, columnDefinition = "TEXT")
-    private String projectTypeDescription;
+    private String description;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
@@ -35,18 +35,16 @@ public class ProjectType {
     public ProjectType() {
     }
 
-    public ProjectType(Long projectTypeId, String projectTypeKey,
-                       String projectTypeValue, String projectTypeDescription,
-                       Date createdTime, Date modifiedTime) {
+    public ProjectType(Long projectTypeId, String key, String value,
+                       String description, Date createdTime, Date modifiedTime) {
         this.projectTypeId = projectTypeId;
-        this.projectTypeKey = projectTypeKey;
-        this.projectTypeValue = projectTypeValue;
-        this.projectTypeDescription = projectTypeDescription;
+        this.key = key;
+        this.value = value;
+        this.description = description;
         this.createdTime = createdTime;
         this.modifiedTime = modifiedTime;
     }
 
-    // Getter Setter
     public Long getProjectTypeId() {
         return projectTypeId;
     }
@@ -55,28 +53,28 @@ public class ProjectType {
         this.projectTypeId = projectTypeId;
     }
 
-    public String getProjectTypeKey() {
-        return projectTypeKey;
+    public String getKey() {
+        return key;
     }
 
-    public void setProjectTypeKey(String projectTypeKey) {
-        this.projectTypeKey = projectTypeKey;
+    public void setKey(String key) {
+        this.key = key;
     }
 
-    public String getProjectTypeValue() {
-        return projectTypeValue;
+    public String getValue() {
+        return value;
     }
 
-    public void setProjectTypeValue(String projectTypeValue) {
-        this.projectTypeValue = projectTypeValue;
+    public void setValue(String value) {
+        this.value = value;
     }
 
-    public String getProjectTypeDescription() {
-        return projectTypeDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProjectTypeDescription(String projectTypeDescription) {
-        this.projectTypeDescription = projectTypeDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getCreatedTime() {
@@ -100,8 +98,9 @@ public class ProjectType {
     public String toString() {
         return "ProjectType{" +
                 "projectTypeId=" + projectTypeId +
-                ", projectTypeKey='" + projectTypeKey + '\'' +
-                ", projectTypeDescription='" + projectTypeDescription + '\'' +
+                ", key='" + key + '\'' +
+                ", value='" + value + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

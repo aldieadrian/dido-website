@@ -19,7 +19,7 @@ public interface PortfolioRepository extends JpaRepository<Portfolio, Long> {
     // Get Portfolios by projectTypeId
     List<Portfolio> findByProjectTypeId(Long projectTypeId);
 
-    // Get Portfolios by portfolioTitle
-    List<Portfolio> findByPortfolioTitle(String portfolioTitle);
+    // Get Portfolios by title
+    List<Portfolio> findByTitle(String title);
 
 }

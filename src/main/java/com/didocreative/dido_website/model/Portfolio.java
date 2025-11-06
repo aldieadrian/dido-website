@@ -15,12 +15,11 @@ public class Portfolio {
     private Long portfolioId;
 
     @Column(nullable = false, length = 512)
-    private String portfolioTitle;
+    private String title;
 
     @Column(nullable = false)
     private Long projectTypeId;
 
-    // --- NEW FIELD ---
     @Column(length = 1024) // URL for the cover image
     private String coverImageUrl;
 
@@ -36,15 +35,16 @@ public class Portfolio {
     public Portfolio() {
     }
 
-    public Portfolio(Long portfolioId, String portfolioTitle, Long projectTypeId, Date createdTime, Date modifiedTime) {
+    public Portfolio(Long portfolioId, String title, Long projectTypeId,
+                     String coverImageUrl, Date createdTime, Date modifiedTime) {
         this.portfolioId = portfolioId;
-        this.portfolioTitle = portfolioTitle;
+        this.title = title;
         this.projectTypeId = projectTypeId;
+        this.coverImageUrl = coverImageUrl;
         this.createdTime = createdTime;
         this.modifiedTime = modifiedTime;
     }
 
-    // Getter Setter
     public Long getPortfolioId() {
         return portfolioId;
     }
@@ -53,12 +53,12 @@ public class Portfolio {
         this.portfolioId = portfolioId;
     }
 
-    public String getPortfolioTitle() {
-        return portfolioTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setPortfolioTitle(String portfolioTitle) {
-        this.portfolioTitle = portfolioTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Long getProjectTypeId() {
@@ -98,8 +98,9 @@ public class Portfolio {
     public String toString() {
         return "Portfolio{" +
                 "portfolioId=" + portfolioId +
-                ", portfolioTitle='" + portfolioTitle + '\'' +
-                ", projectTypeId='" + projectTypeId + '\'' +
+                ", title='" + title + '\'' +
+                ", projectTypeId=" + projectTypeId +
+                ", coverImageUrl='" + coverImageUrl + '\'' +
                 '}';
     }
 }

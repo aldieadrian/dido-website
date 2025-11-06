@@ -7,18 +7,15 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "copywriting")
-public class Copywriting {
+@Table(name = "portfolio_copywriting")
+public class PortfolioCopywriting {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long copywritingId;
+    private Long portfolioCopywritingId;
 
     @Column(nullable = false)
-    private Long pageId;
-
-    @Column(nullable = false)
-    private Long copywritingSectionId;
+    private Long portfolioCopywritingSectionId;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String copytext;
@@ -32,43 +29,32 @@ public class Copywriting {
     private Date modifiedTime;
 
     // Constructor
-    public Copywriting() {
+    public PortfolioCopywriting() {
     }
 
-    public Copywriting(Long copywritingId, Long pageId,
-                       Long copywritingSectionId, String copytext,
-                       Date createdTime, Date modifiedTime) {
-        this.copywritingId = copywritingId;
-        this.pageId = pageId;
-        this.copywritingSectionId = copywritingSectionId;
+    public PortfolioCopywriting(Long portfolioCopywritingId, Long portfolioCopywritingSectionId,
+                                String copytext, Date createdTime, Date modifiedTime) {
+        this.portfolioCopywritingId = portfolioCopywritingId;
+        this.portfolioCopywritingSectionId = portfolioCopywritingSectionId;
         this.copytext = copytext;
         this.createdTime = createdTime;
         this.modifiedTime = modifiedTime;
     }
 
-    // Getter Setter
-    public Long getCopywritingId() {
-        return copywritingId;
+    public Long getPortfolioCopywritingId() {
+        return portfolioCopywritingId;
     }
 
-    public void setCopywritingId(Long copywritingId) {
-        this.copywritingId = copywritingId;
+    public void setPortfolioCopywritingId(Long portfolioCopywritingId) {
+        this.portfolioCopywritingId = portfolioCopywritingId;
     }
 
-    public Long getPageId() {
-        return pageId;
+    public Long getPortfolioCopywritingSectionId() {
+        return portfolioCopywritingSectionId;
     }
 
-    public void setPageId(Long pageId) {
-        this.pageId = pageId;
-    }
-
-    public Long getCopywritingSectionId() {
-        return copywritingSectionId;
-    }
-
-    public void setCopywritingSectionId(Long copywritingSectionId) {
-        this.copywritingSectionId = copywritingSectionId;
+    public void setPortfolioCopywritingSectionId(Long portfolioCopywritingSectionId) {
+        this.portfolioCopywritingSectionId = portfolioCopywritingSectionId;
     }
 
     public String getCopytext() {
@@ -98,10 +84,9 @@ public class Copywriting {
     // toString method
     @Override
     public String toString() {
-        return "Copywriting{" +
-                "copywritingId=" + copywritingId +
-                ", pageId='" + pageId + '\'' +
-                ", copywritingSectionId='" + copywritingSectionId + '\'' +
+        return "PortfolioCopywriting{" +
+                "portfolioCopywritingId=" + portfolioCopywritingId +
+                ", portfolioCopywritingSectionId=" + portfolioCopywritingSectionId +
                 '}';
     }
 }

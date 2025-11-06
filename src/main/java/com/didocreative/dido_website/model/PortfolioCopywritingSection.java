@@ -7,21 +7,24 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "copywriting_section")
+@Table(name = "portfolio_copywriting_section")
 public class PortfolioCopywritingSection {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long copywritingSectionId;
+    private Long portfolioCopywritingSectionId;
+
+    @Column(nullable = false) // Foreign key to Portfolio
+    private Long portfolioId;
 
     @Column(nullable = false, length = 256)
-    private String copywritingSectionKey;
+    private String key;
 
     @Column(nullable = false, length = 512)
-    private String copywritingSectionValue;
+    private String value;
 
     @Column(nullable = false, columnDefinition = "TEXT")
-    private String copywritingSectionDescription;
+    private String description;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
@@ -35,48 +38,57 @@ public class PortfolioCopywritingSection {
     public PortfolioCopywritingSection() {
     }
 
-    public PortfolioCopywritingSection(Long copywritingSectionId, String copywritingSectionKey,
-                                       String copywritingSectionValue, String copywritingSectionDescription,
+    public PortfolioCopywritingSection(Long portfolioCopywritingSectionId, Long portfolioId,
+                                       String key, String value, String description,
                                        Date createdTime, Date modifiedTime) {
-        this.copywritingSectionId = copywritingSectionId;
-        this.copywritingSectionKey = copywritingSectionKey;
-        this.copywritingSectionValue = copywritingSectionValue;
-        this.copywritingSectionDescription = copywritingSectionDescription;
+        this.portfolioCopywritingSectionId = portfolioCopywritingSectionId;
+        this.portfolioId = portfolioId;
+        this.key = key;
+        this.value = value;
+        this.description = description;
         this.createdTime = createdTime;
         this.modifiedTime = modifiedTime;
     }
 
     // Getter Setter
-    public Long getCopywritingSectionId() {
-        return copywritingSectionId;
+    public Long getPortfolioCopywritingSectionId() {
+        return portfolioCopywritingSectionId;
     }
 
-    public void setCopywritingSectionId(Long copywritingSectionId) {
-        this.copywritingSectionId = copywritingSectionId;
+    public void setPortfolioCopywritingSectionId(Long portfolioCopywritingSectionId) {
+        this.portfolioCopywritingSectionId = portfolioCopywritingSectionId;
     }
 
-    public String getCopywritingSectionKey() {
-        return copywritingSectionKey;
+    public Long getPortfolioId() {
+        return portfolioId;
     }
 
-    public void setCopywritingSectionKey(String copywritingSectionKey) {
-        this.copywritingSectionKey = copywritingSectionKey;
+    public void setPortfolioId(Long portfolioId) {
+        this.portfolioId = portfolioId;
     }
 
-    public String getCopywritingSectionValue() {
-        return copywritingSectionValue;
+    public String getKey() {
+        return key;
     }
 
-    public void setCopywritingSectionValue(String copywritingSectionValue) {
-        this.copywritingSectionValue = copywritingSectionValue;
+    public void setKey(String key) {
+        this.key = key;
     }
 
-    public String getCopywritingSectionDescription() {
-        return copywritingSectionDescription;
+    public String getValue() {
+        return value;
     }
 
-    public void setCopywritingSectionDescription(String copywritingSectionDescription) {
-        this.copywritingSectionDescription = copywritingSectionDescription;
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getCreatedTime() {
@@ -98,11 +110,12 @@ public class PortfolioCopywritingSection {
     // toString method
     @Override
     public String toString() {
-        return "CopywritingSection{" +
-                "copywritingSectionId=" + copywritingSectionId +
-                ", copywritingSectionKey='" + copywritingSectionKey + '\'' +
-                ", copywritingSectionValue='" + copywritingSectionValue + '\'' +
-                ", copywritingSectionDescription='" + copywritingSectionDescription + '\'' +
+        return "PortfolioCopywritingSection{" +
+                "portfolioCopywritingSectionId=" + portfolioCopywritingSectionId +
+                ", portfolioId=" + portfolioId +
+                ", key='" + key + '\'' +
+                ", value='" + value + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
