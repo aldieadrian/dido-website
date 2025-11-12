@@ -1,12 +1,14 @@
 package com.didocreative.dido_website.service;
 
+import com.didocreative.dido_website.dto.PortfolioCopywritingSectionDTO;
 import com.didocreative.dido_website.dto.PortfolioDetailDTO;
-import com.didocreative.dido_website.model.Portfolio;
-import com.didocreative.dido_website.model.PortfolioCopywritingSection;
-import com.didocreative.dido_website.model.PortfolioImageSection;
+import com.didocreative.dido_website.dto.PortfolioImageSectionDTO;
+import com.didocreative.dido_website.model.*;
 import com.didocreative.dido_website.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 //    @Service: This is the most important annotation.
@@ -37,20 +39,47 @@ public class PortfolioService {
     public PortfolioDetailDTO getPortfolioDetail(Long portfolioId){
         Portfolio portfolio = portfolioRepository.findById(portfolioId).orElse(null);
 
-        if (portfolio == null){
+        if (portfolio == null) {
             return null;
         }
 
-        List<PortfolioImageSection> imageSections = imageSectionRepository.findByPortfolioId(portfolioId);
-        List<PortfolioCopywritingSection> copywritingSections = copywritingSectionRepository.findByPortfolioId(portfolioId);
+        PortfolioDetailDTO detailDTO = new PortfolioDetailDTO();
+        detailDTO.setPortfolio(portfolio);
 
-        PortfolioDetailDTO dto = new PortfolioDetailDTO();
+        List<PortfolioImageSection> rawImgSections = imageSectionRepository.findByPortfolioId(portfolioId);
+        List<PortfolioImageSectionDTO> imgSectionDTOs = new ArrayList<>();
 
-        dto.setPortfolio(portfolio);
-        dto.setImageSections(imageSections);
-        dto.setCopywritingSections(copywritingSections);
+        for (PortfolioImageSection section : rawImgSections) {
+            List<PortfolioImage> images = imageRepository.findByPortfolioImageSectionId(
+                section.getPortfolioImageSectionId());
 
-        return dto;
+            PortfolioImageSectionDTO sectionDTO = new PortfolioImageSectionDTO();
+            sectionDTO.setSection(section);
+            sectionDTO.setImages(images);
+
+            imgSectionDTOs.add(sectionDTO);
+        }
+
+        detailDTO.setImageSections(imgSectionDTOs);
+
+        List<PortfolioCopywritingSection> rawTextSections = copywritingSectionRepository.findByPortfolioId(portfolioId);
+        List<PortfolioCopywritingSectionDTO> textSectionDTOs = new ArrayList<>();
+
+        for (PortfolioCopywritingSection section : rawTextSections) {
+            List<PortfolioCopywriting> texts = copywritingRepository.findByPortfolioCopywritingSectionId(
+                section.getPortfolioCopywritingSectionId());
+
+            PortfolioCopywritingSectionDTO sectionDTO = new PortfolioCopywritingSectionDTO();
+            sectionDTO.setSection(section);
+            sectionDTO.setCopywritingList(texts);
+
+            textSectionDTOs.add(sectionDTO);
+        }
+
+        detailDTO.setCopywritingSections(textSectionDTOs);
+
+        return detailDTO;
+
     }
 
 

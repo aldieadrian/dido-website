@@ -1,42 +1,135 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{layout :: head-fragment (pageTitle='Portfolio Detail')}">
-</head>
+<head th:replace="~{layout :: head-fragment (pageTitle=${portfolioDetail.portfolio.title})}"></head>
 
 <body>
-<header th:replace="~{layout :: header-fragment}"></header>
-<nav th:replace="~{layout :: navbar-fragment}"></nav>
+<div class="mil-wrapper" id="top">
 
-<main>
-    <div th:if="${portfolioDetail != null}" th:object="${portfolioDetail}">
+    <div th:replace="~{layout :: cursor-fragment}"></div>
+    <div th:replace="~{layout :: preloader-fragment}"></div>
+    <div th:replace="~{layout :: progress-track-fragment}"></div>
+    <div th:replace="~{layout :: menu-fragment}"></div>
+    <div th:replace="~{layout :: curtain-fragment}"></div>
+    <div th:replace="~{layout :: frame-fragment}"></div>
 
-        <h1 th:text="*{portfolio.title}">[Portfolio Title]</h1>
+    <div class="mil-content">
+        <div id="swupMain" class="mil-main-transition">
 
-        <p>
-            <strong>Cover Image URL:</strong>
-            <span th:text="*{portfolio.coverImageUrl}"></span>
-        </p>
+            <div class="mil-inner-banner">
+                <div class="mil-banner-content mil-up">
+                    <div class="mil-animation-frame">
+                        <div class="mil-animation mil-position-4 mil-dark mil-scale" data-value-1="6" data-value-2="1.4"></div>
+                    </div>
+                    <div class="container">
+                        <ul class="mil-breadcrumbs mil-mb-60">
+                            <li><a th:href="@{/}">Homepage</a></li>
+                            <li><a th:href="@{/portfolio}">Portfolio</a></li>
+                            <li><a th:href="@{/portfolio/{id}(id=${portfolioDetail.portfolio.portfolioId})}" th:text="${portfolioDetail.portfolio.title}">Project Name</a></li>
+                        </ul>
+                        <h1 class="mil-mb-60" th:text="${portfolioDetail.portfolio.title}">Project Title</h1>
+                        <a href="#project" class="mil-link mil-dark mil-arrow-place mil-down-arrow">
+                            <span>Read more</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <section class="mil-p-120-0">
+                <div class="container mil-p-0-120" id="project">
 
-        <hr>
+                    <div class="mil-image-frame mil-horizontal mil-up">
+                        <img th:src="@{${portfolioDetail.portfolio.coverImageUrl}}" alt="cover">
+                        <a data-fancybox="gallery" data-no-swup th:href="@{${portfolioDetail.portfolio.coverImageUrl}}" class="mil-zoom-btn">
+                            <img th:src="@{/img/icons/zoom.svg}" alt="zoom">
+                        </a>
+                    </div>
 
-        <h2>Image Sections:</h2>
-        <div th:each="section : *{imageSections}">
-            <h4 th:text="${section.value}">[Section Value]</h4>
-            <p th:text="${section.description}">[Section Description]</p>
+                    <div class="mil-info mil-up">
+                        <div>Client: &nbsp;<span class="mil-dark">DIDO Client</span></div>
+                        <div>Date: &nbsp;<span class="mil-dark" th:text="${#dates.format(portfolioDetail.portfolio.createdTime, 'MMMM yyyy')}">Date</span></div>
+                        <div>Author: &nbsp;<span class="mil-dark">DIDO Creative</span></div>
+                    </div>
+
+                    <div class="mil-p-120-0">
+
+                        <div th:each="textDTO : ${portfolioDetail.copywritingSections}">
+
+                            <div class="row justify-content-between mil-p-90-120">
+                                <div class="col-lg-5">
+                                    <h3 class="mil-up mil-mb-60" th:text="${textDTO.section.value}">Header</h3>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p class="mil-up mil-mb-30" th:text="${textDTO.section.description}">Description</p>
+
+                                    <div th:each="textItem : ${textDTO.copywritingList}">
+                                        <p class="mil-up" th:text="${textItem.copytext}">Actual paragraph text...</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div th:each="imgDTO : ${portfolioDetail.imageSections}">
+
+                            <div class="row mil-p-0-90">
+                                <div class="col-lg-12">
+                                    <h4 class="mil-up mil-mb-30" th:text="${imgDTO.section.value}">Gallery Title</h4>
+                                    <p class="mil-up mil-mb-30" th:text="${imgDTO.section.description}">Gallery Description</p>
+                                </div>
+                            </div>
+
+                            <div class="row mil-p-0-90">
+                                <div class="col-lg-6" th:each="imgItem : ${imgDTO.images}">
+
+                                    <div class="mil-image-frame mil-vertical mil-up mil-mb-30">
+                                        <img th:src="@{${imgItem.imageUrl}}" alt="project image">
+                                        <a data-fancybox="gallery" data-no-swup th:href="@{${imgItem.imageUrl}}" class="mil-zoom-btn">
+                                            <img th:src="@{/img/icons/zoom.svg}" alt="zoom">
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mil-works-nav mil-up">
+                        <a href="#." class="mil-link mil-dark mil-arrow-place mil-icon-left mil-disabled">
+                            <span>Prev project</span>
+                        </a>
+                        <a th:href="@{/portfolio}" class="mil-link mil-dark">
+                            <span>All projects</span>
+                        </a>
+                        <a href="#." class="mil-link mil-dark mil-arrow-place">
+                            <span>Next project</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <section class="mil-soft-bg">
+                <div class="container mil-p-120-120">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <span class="mil-suptitle mil-suptitle-right mil-suptitle-dark mil-up">Looking to make your mark? We'll help you turn <br> your project into a success story.</span>
+                        </div>
+                    </div>
+                    <div class="mil-center">
+                        <h2 class="mil-up mil-mb-60">Ready to bring your <span class="mil-thin">ideas to</span> life? <br> We're <span class="mil-thin">here to help</span></h2>
+                        <div class="mil-up"><a th:href="@{/contact}" class="mil-button mil-arrow-place"><span>Contact us</span></a></div>
+                    </div>
+                </div>
+            </section>
+
         </div>
-
-        <hr>
-
-        <h2>Copywriting Sections:</h2>
-        <div th:each="section : *{copywritingSections}">
-            <h4 th:text="${section.value}">[Section Value]</h4>
-            <p th:text="${section.description}">[Section Description]</p>
-        </div>
-
     </div>
-</main>
 
-<footer th:replace="~{layout :: footer-fragment}"></footer>
+    <div th:replace="~{layout :: footer-fragment}"></div>
+
+</div>
+
+<div th:replace="~{layout :: scripts-fragment}"></div>
+
 </body>
 </html>

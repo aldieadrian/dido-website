@@ -10,11 +10,10 @@ public class PortfolioDetailDTO {
 
     private Portfolio portfolio;
 
-    private List<PortfolioImageSection> imageSections;
+    private List<PortfolioImageSectionDTO> imageSections;
 
-    private List<PortfolioCopywritingSection> copywritingSections;
+    private List<PortfolioCopywritingSectionDTO> copywritingSections;
 
-    // Getter Setter
     public Portfolio getPortfolio() {
         return portfolio;
     }
@@ -23,19 +22,19 @@ public class PortfolioDetailDTO {
         this.portfolio = portfolio;
     }
 
-    public List<PortfolioImageSection> getImageSections() {
+    public List<PortfolioImageSectionDTO> getImageSections() {
         return imageSections;
     }
 
-    public void setImageSections(List<PortfolioImageSection> imageSections) {
+    public void setImageSections(List<PortfolioImageSectionDTO> imageSections) {
         this.imageSections = imageSections;
     }
 
-    public List<PortfolioCopywritingSection> getCopywritingSections() {
+    public List<PortfolioCopywritingSectionDTO> getCopywritingSections() {
         return copywritingSections;
     }
 
-    public void setCopywritingSections(List<PortfolioCopywritingSection> copywritingSections) {
+    public void setCopywritingSections(List<PortfolioCopywritingSectionDTO> copywritingSections) {
         this.copywritingSections = copywritingSections;
     }
 }
