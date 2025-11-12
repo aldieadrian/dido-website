@@ -1,5 +1,6 @@
 package com.didocreative.dido_website.service;
 
+import com.didocreative.dido_website.dto.PortfolioDetailDTO;
 import com.didocreative.dido_website.model.Portfolio;
 import com.didocreative.dido_website.model.PortfolioCopywritingSection;
 import com.didocreative.dido_website.model.PortfolioImageSection;
@@ -33,17 +34,23 @@ public class PortfolioService {
         return portfolioRepository.findAll();
     }
 
-    public Portfolio getPortfolioDetail(Long portfolioId){
+    public PortfolioDetailDTO getPortfolioDetail(Long portfolioId){
         Portfolio portfolio = portfolioRepository.findById(portfolioId).orElse(null);
 
-        if (portfolio != null){
-
-            List<PortfolioImageSection> imageSections = imageSectionRepository.findByPortfolioId(portfolioId);
-
-            List<PortfolioCopywritingSection> copywritingSections = copywritingSectionRepository.findByPortfolioId(portfolioId);
+        if (portfolio == null){
+            return null;
         }
 
-        return portfolio;
+        List<PortfolioImageSection> imageSections = imageSectionRepository.findByPortfolioId(portfolioId);
+        List<PortfolioCopywritingSection> copywritingSections = copywritingSectionRepository.findByPortfolioId(portfolioId);
+
+        PortfolioDetailDTO dto = new PortfolioDetailDTO();
+
+        dto.setPortfolio(portfolio);
+        dto.setImageSections(imageSections);
+        dto.setCopywritingSections(copywritingSections);
+
+        return dto;
     }
 
 

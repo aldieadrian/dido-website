@@ -1,22 +1,91 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{layout :: head-fragment (pageTitle='Portfolio')}">
-    <meta charset="UTF-8">
-    <title>Loading...</title>
-</head>
+<head th:replace="~{layout :: head-fragment (pageTitle='Portfolio')}"></head>
 
 <body>
+<div class="mil-wrapper" id="top">
 
-<header th:replace="~{layout :: header-fragment}"></header>
-<nav th:replace="~{layout :: navbar-fragment}"></nav>
+    <div th:replace="~{layout :: cursor-fragment}"></div>
+    <div th:replace="~{layout :: preloader-fragment}"></div>
+    <div th:replace="~{layout :: progress-track-fragment}"></div>
+    <div th:replace="~{layout :: menu-fragment}"></div>
+    <div th:replace="~{layout :: curtain-fragment}"></div>
+    <div th:replace="~{layout :: frame-fragment}"></div>
 
-<main>
-    <h2>Portfolio of DIDO Creative Studio</h2>
-    <p>This is the Portfolio page.</p>
-</main>
+    <div class="mil-content">
+        <div id="swupMain" class="mil-main-transition">
 
-<footer th:replace="~{layout :: footer-fragment}"></footer>
+            <div class="mil-inner-banner">
+                <div class="mil-banner-content mil-up">
+                    <div class="mil-animation-frame">
+                        <div class="mil-animation mil-position-4 mil-dark mil-scale" data-value-1="6" data-value-2="1.4"></div>
+                    </div>
+                    <div class="container">
+                        <ul class="mil-breadcrumbs mil-mb-60">
+                            <li><a th:href="@{/}">Homepage</a></li>
+                            <li><a th:href="@{/portfolio}">Portfolio</a></li>
+                        </ul>
+                        <h1 class="mil-mb-60">Designing a <br> Better <span class="mil-thin">World Today</span></h1>
+                        <a href="#portfolio" class="mil-link mil-dark mil-arrow-place mil-down-arrow">
+                            <span>Our works</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <section id="portfolio">
+                <div class="container mil-portfolio mil-p-120-60">
+                    <div class="mil-lines-place"></div>
+                    <div class="mil-lines-place mil-lines-long"></div>
+
+                    <div th:if="${portfolios.isEmpty()}">
+                        <h3 class="mil-up">No portfolio items to display yet.</h3>
+                    </div>
+
+                    <div class="row justify-content-between align-items-center">
+
+                        <div class="col-lg-5" th:each="p : ${portfolios}">
+
+                            <a th:href="@{/portfolio/{id}(id=${p.portfolioId})}" class="mil-portfolio-item mil-more mil-mb-60">
+
+                                <div class="mil-cover-frame mil-vert mil-up">
+                                    <div class="mil-cover">
+                                        <img th:src="@{${p.coverImageUrl}}" alt="cover">
+                                    </div>
+                                </div>
+
+                                <div class="mil-descr">
+                                    <div class="mil-labels mil-up mil-mb-15">
+                                        <div class="mil-label mil-upper mil-accent">Branding</div>
+                                        <div class="mil-label mil-upper" th:text="${#dates.format(p.createdTime, 'MMM dd yyyy')}">May 24 2023</div>
+                                    </div>
+                                    <h4 class="mil-up" th:text="${p.title}">[Project Title]</h4>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <section class="mil-soft-bg">
+                <div class="container mil-p-120-120">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <span class="mil-suptitle mil-suptitle-right mil-suptitle-dark mil-up">Looking to make your mark? We'll help you turn <br> your project into a success story.</span>
+                        </div>
+                    </div>
+                    <div class="mil-center">
+                        <h2 class="mil-up mil-mb-60">Ready to bring your <span class="mil-thin">ideas to</span> life? <br> We're <span class="mil-thin">here to help</span></h2>
+                        <div class="mil-up"><a th:href="@{/contact}" class="mil-button mil-arrow-place"><span>Contact us</span></a></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div th:replace="~{layout :: footer-fragment}"></div>
+
+</div>
+<div th:replace="~{layout :: scripts-fragment}"></div>
 
 </body>
 </html>

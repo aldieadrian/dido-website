@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout :: head-fragment (pageTitle='Portfolio Detail')}">
+</head>
+
+<body>
+<header th:replace="~{layout :: header-fragment}"></header>
+<nav th:replace="~{layout :: navbar-fragment}"></nav>
+
+<main>
+    <div th:if="${portfolioDetail != null}" th:object="${portfolioDetail}">
+
+        <h1 th:text="*{portfolio.title}">[Portfolio Title]</h1>
+
+        <p>
+            <strong>Cover Image URL:</strong>
+            <span th:text="*{portfolio.coverImageUrl}"></span>
+        </p>
+
+        <hr>
+
+        <h2>Image Sections:</h2>
+        <div th:each="section : *{imageSections}">
+            <h4 th:text="${section.value}">[Section Value]</h4>
+            <p th:text="${section.description}">[Section Description]</p>
+        </div>
+
+        <hr>
+
+        <h2>Copywriting Sections:</h2>
+        <div th:each="section : *{copywritingSections}">
+            <h4 th:text="${section.value}">[Section Value]</h4>
+            <p th:text="${section.description}">[Section Description]</p>
+        </div>
+
+    </div>
+</main>
+
+<footer th:replace="~{layout :: footer-fragment}"></footer>
+</body>
+</html>
