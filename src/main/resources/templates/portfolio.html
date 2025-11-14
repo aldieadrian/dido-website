@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="~{layout :: head-fragment (pageTitle='Portfolio')}"></head>
 
 <body>
 <div class="mil-wrapper" id="top">
-
     <div th:replace="~{layout :: cursor-fragment}"></div>
     <div th:replace="~{layout :: preloader-fragment}"></div>
     <div th:replace="~{layout :: progress-track-fragment}"></div>
@@ -33,59 +31,76 @@
                     </div>
                 </div>
             </div>
+
             <section id="portfolio">
                 <div class="container mil-portfolio mil-p-120-60">
                     <div class="mil-lines-place"></div>
                     <div class="mil-lines-place mil-lines-long"></div>
 
-                    <div th:if="${portfolios.isEmpty()}">
-                        <h3 class="mil-up">No portfolio items to display yet.</h3>
-                    </div>
-
-                    <div class="row justify-content-between align-items-center">
-
-                        <div class="col-lg-5" th:each="p : ${portfolios}">
-
-                            <a th:href="@{/portfolio/{id}(id=${p.portfolioId})}" class="mil-portfolio-item mil-more mil-mb-60">
-
-                                <div class="mil-cover-frame mil-vert mil-up">
-                                    <div class="mil-cover">
-                                        <img th:src="@{${p.coverImageUrl}}" alt="cover">
-                                    </div>
-                                </div>
-
-                                <div class="mil-descr">
-                                    <div class="mil-labels mil-up mil-mb-15">
-                                        <div class="mil-label mil-upper mil-accent">Branding</div>
-                                        <div class="mil-label mil-upper" th:text="${#dates.format(p.createdTime, 'MMM dd yyyy')}">May 24 2023</div>
-                                    </div>
-                                    <h4 class="mil-up" th:text="${p.title}">[Project Title]</h4>
-                                </div>
-                            </a>
+                    <div class="row justify-content-between align-items-center" id="portfolio-container">
+                        <div class="col-12 text-center">
+                            <h3 class="mil-up">Loading projects...</h3>
                         </div>
-
                     </div>
                 </div>
             </section>
             <section class="mil-soft-bg">
-                <div class="container mil-p-120-120">
-                    <div class="row">
-                        <div class="col-lg-10">
-                            <span class="mil-suptitle mil-suptitle-right mil-suptitle-dark mil-up">Looking to make your mark? We'll help you turn <br> your project into a success story.</span>
-                        </div>
-                    </div>
-                    <div class="mil-center">
-                        <h2 class="mil-up mil-mb-60">Ready to bring your <span class="mil-thin">ideas to</span> life? <br> We're <span class="mil-thin">here to help</span></h2>
-                        <div class="mil-up"><a th:href="@{/contact}" class="mil-button mil-arrow-place"><span>Contact us</span></a></div>
-                    </div>
-                </div>
             </section>
+
         </div>
     </div>
-    <div th:replace="~{layout :: footer-fragment}"></div>
 
+    <div th:replace="~{layout :: footer-fragment}"></div>
 </div>
+
 <div th:replace="~{layout :: scripts-fragment}"></div>
+
+<script>
+    // Run this when the page loads
+    document.addEventListener("DOMContentLoaded", function() {
+
+        fetch('/api/portfolio')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('portfolio-container');
+                let htmlContent = '';
+
+                if (data.length === 0) {
+                    container.innerHTML = '<div class="col-12"><h3>No projects found.</h3></div>';
+                    return;
+                }
+
+                // Loop through the JSON data
+                data.forEach(p => {
+                    // We use Backticks (`) to create the HTML string dynamically
+                    htmlContent += `
+                        <div class="col-lg-5">
+                            <a href="/portfolio/${p.portfolioId}" class="mil-portfolio-item mil-more mil-mb-60">
+                                <div class="mil-cover-frame mil-vert mil-up">
+                                    <div class="mil-cover">
+                                        <img src="${p.coverImageUrl}" alt="cover">
+                                    </div>
+                                </div>
+                                <div class="mil-descr">
+                                    <div class="mil-labels mil-up mil-mb-15">
+                                        <div class="mil-label mil-upper mil-accent">Branding</div>
+                                        <div class="mil-label mil-upper">
+                                            ${new Date(p.createdTime).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                                        </div>
+                                    </div>
+                                    <h4 class="mil-up">${p.title}</h4>
+                                </div>
+                            </a>
+                        </div>
+                    `;
+                });
+
+                // Inject the HTML into the page
+                container.innerHTML = htmlContent;
+            })
+            .catch(error => console.error('Error fetching portfolio:', error));
+    });
+</script>
 
 </body>
 </html>
