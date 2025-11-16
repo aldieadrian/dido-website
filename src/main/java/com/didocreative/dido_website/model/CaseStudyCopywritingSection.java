@@ -104,4 +104,16 @@ public class CaseStudyCopywritingSection {
     public void setModifiedTime(Date modifiedTime) {
         this.modifiedTime = modifiedTime;
     }
+
+    // toString method
+    @Override
+    public String toString() {
+        return "CaseStudyCopywritingSection{" +
+                "caseStudyCopywritingSectionId=" + caseStudyCopywritingSectionId +
+                ", caseStudyId=" + caseStudyId +
+                ", key='" + key + '\'' +
+                ", value='" + value + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

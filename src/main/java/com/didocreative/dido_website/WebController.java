@@ -7,31 +7,56 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class WebController {
 
-    // Note: NO @Autowired Services anymore!
+    // --- STATIC PAGES ---
 
     @GetMapping("/")
-    public String getHomePage() { return "index"; }
+    public String getHomePage() {
+        return "index";
+    }
 
     @GetMapping("/about")
-    public String getAboutPage() { return "about"; }
+    public String getAboutPage() {
+        return "about";
+    }
 
     @GetMapping("/services")
-    public String getServicesPage() { return "services"; }
+    public String getServicesPage() {
+        return "services";
+    }
+
+    @GetMapping("/service")
+    public String getServiceDetailPage() {
+        return "service";
+    }
 
     @GetMapping("/contact")
-    public String getContactPage() { return "contact"; }
+    public String getContactPage() {
+        return "contact";
+    }
 
-    // --- PORTFOLIO ROUTES (Now just returning templates) ---
+    // --- PORTFOLIO PAGES ---
 
     @GetMapping("/portfolio")
     public String getPortfolioPage() {
-        // No fetching data here! The HTML will do it via JS.
         return "portfolio";
     }
 
     @GetMapping("/portfolio/{id}")
     public String getPortfolioDetailPage(@PathVariable Long id) {
-        // We just return the template. The template's JS will grab the ID from the URL.
         return "portfolio-detail";
+    }
+
+    // --- NEW: CASES PAGES ---
+
+    @GetMapping("/cases")
+    public String getCasesPage() {
+        // This will look for src/main/resources/templates/cases.html
+        return "cases";
+    }
+
+    @GetMapping("/cases/{id}")
+    public String getCaseDetailPage(@PathVariable Long id) {
+        // This will look for src/main/resources/templates/case-detail.html
+        return "case-detail";
     }
 }
