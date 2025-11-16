@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout :: head-fragment (pageTitle='Loading Case Study...')}"></head>
+
+<body>
+<div class="mil-wrapper" id="top">
+
+    <div th:replace="~{layout :: cursor-fragment}"></div>
+    <div th:replace="~{layout :: preloader-fragment}"></div>
+    <div th:replace="~{layout :: progress-track-fragment}"></div>
+    <div th:replace="~{layout :: menu-fragment}"></div>
+    <div th:replace="~{layout :: curtain-fragment}"></div>
+    <div th:replace="~{layout :: frame-fragment}"></div>
+
+    <div class="mil-content">
+        <div id="swupMain" class="mil-main-transition">
+
+            <div class="mil-inner-banner">
+                <div class="mil-banner-content mil-center mil-up">
+                    <div class="container">
+                        <ul class="mil-breadcrumbs mil-center mil-mb-60">
+                            <li><a th:href="@{/}">Homepage</a></li>
+                            <li><a th:href="@{/cases}">Case Studies</a></li>
+                            <li><a href="#" id="dynamic-breadcrumb">Loading...</a></li>
+                        </ul>
+                        <h2 id="dynamic-title">Loading...</h2>
+                    </div>
+                </div>
+            </div>
+            <section id="blog">
+                <div class="container mil-p-120-90">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+
+                            <div class="mil-image-frame mil-horizontal mil-up">
+                                <img src="" alt="Publication cover" class="mil-scale" id="dynamic-cover-image">
+                            </div>
+                            <div class="mil-info mil-up mil-mb-90">
+                                <div>Category: &nbsp;<span class="mil-dark" id="dynamic-category">...</span></div>
+                                <div>Date: &nbsp;<span class="mil-dark" id="dynamic-date">...</span></div>
+                                <div>Author: &nbsp;<span class="mil-dark">DIDO Creative</span></div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-8" id="dynamic-content-container">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div th:replace="~{layout :: footer-fragment}"></div>
+
+</div>
+<div th:replace="~{layout :: scripts-fragment}"></div>
+
+</body>
+</html>
