@@ -1,10 +1,10 @@
 package com.didocreative.dido_website.service;
 
-import com.didocreative.dido_website.dto.CaseStudyCopywritingSectionDTO;
-import com.didocreative.dido_website.dto.CaseStudyDetailDTO;
-import com.didocreative.dido_website.dto.CaseStudyImageSectionDTO;
-import com.didocreative.dido_website.model.*;
-import com.didocreative.dido_website.repository.*;
+import com.didocreative.dido_website.dto.casestudy.CaseStudyCopywritingSectionDTO;
+import com.didocreative.dido_website.dto.casestudy.CaseStudyDetailDTO;
+import com.didocreative.dido_website.dto.casestudy.CaseStudyImageSectionDTO;
+import com.didocreative.dido_website.model.casestudy.*;
+import com.didocreative.dido_website.repository.casestudy.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -2,14 +2,18 @@ package com.didocreative.dido_website;
 
 // --- 1. ADD NEW IMPORTS (for CaseStudy models/repos) ---
 import com.didocreative.dido_website.model.*;
+import com.didocreative.dido_website.model.casestudy.*;
+import com.didocreative.dido_website.model.portfolio.*;
 import com.didocreative.dido_website.repository.*;
 // --- END NEW IMPORTS ---
 
+import com.didocreative.dido_website.repository.casestudy.*;
+import com.didocreative.dido_website.repository.portfolio.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import java.util.Date;
+
 import java.util.List;
 
 @SpringBootApplication

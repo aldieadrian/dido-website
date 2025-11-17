@@ -1,10 +1,10 @@
 package com.didocreative.dido_website.service;
 
-import com.didocreative.dido_website.dto.PortfolioCopywritingSectionDTO;
-import com.didocreative.dido_website.dto.PortfolioDetailDTO;
-import com.didocreative.dido_website.dto.PortfolioImageSectionDTO;
-import com.didocreative.dido_website.model.*;
-import com.didocreative.dido_website.repository.*;
+import com.didocreative.dido_website.dto.portfolio.PortfolioCopywritingSectionDTO;
+import com.didocreative.dido_website.dto.portfolio.PortfolioDetailDTO;
+import com.didocreative.dido_website.dto.portfolio.PortfolioImageSectionDTO;
+import com.didocreative.dido_website.model.portfolio.*;
+import com.didocreative.dido_website.repository.portfolio.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
